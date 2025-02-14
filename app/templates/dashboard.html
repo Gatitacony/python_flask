@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <div>
+                <h1>Dashboard</h1>
+                <p class="welcome-text">Bienvenido, {{current_user.username}}!</p>
+            </div>
+            <a href="{{ url_for('logout') }}" class="btn btn-logout">Cerrar Sesión</a>
+        </div>
+
+        <div class="note-form">
+            <h2>{% if edit_id %}Editar Nota{% else %}Agregar Nueva Nota{% endif %}</h2>
+            <form method="POST">
+                {{ note_form.hidden_tag() }}
+                <div class="form-group">
+                    {{ note_form.title.label }}
+                    {{ note_form.title(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ note_form.content.label }}
+                    {{ note_form.content(class="form-control") }}
+                </div>
+                <button type="submit" class="btn">{% if edit_id %}Actualizar{% else %}Agregar{% endif %} Nota</button>
+                {% if edit_id %}
+                    <a href="{{ url_for('dashboard') }}" class="btn">Cancelar Edición</a>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="notes-grid">
+            {% if notes %}
+                {% for note in notes %}
+                    <div class="note-card">
+                        <h3>{{ note.title }}</h3>
+                        <p>{{ note.content }}</p>
+                        <div class="note-actions">
+                            <a href="{{ url_for('dashboard', edit=note.id) }}" class="btn btn-small btn-edit">Editar</a>
+                            <form action="{{ url_for('dashboard') }}" method="POST" style="display: inline;">
+                                <input type="hidden" name="delete" value="{{ note.id }}">
+                                <button type="submit" class="btn btn-small btn-delete">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-notes">No hay notas aún. ¡Crea una nueva!</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

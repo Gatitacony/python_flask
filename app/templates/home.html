@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatCodeArte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" type="image/png" href="static/images/catcodearte.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="POST" action="{{ url_for('home') }}">
+                <input id="register_csrf_token" name="csrf_token" type="hidden" value="{{ register_form.csrf_token._value() }}">
+                <h1>Crear Cuenta</h1>
+                <div class="form-field">
+                    {{ register_form.username(placeholder="Nombre", class="input-field", id="register-username", autocomplete="username") }}
+                </div>
+                <div class="form-field">
+                    {{ register_form.email(placeholder="Email", class="input-field", id="register-email", autocomplete="email") }}
+                </div>
+                <div class="form-field">
+                    {{ register_form.password(placeholder="Contraseña", class="input-field", id="register-password", autocomplete="new-password") }}
+                </div>
+                <button type="submit" class="submit-btn" name="register">Registrarse</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <form method="POST" action="{{ url_for('home') }}">
+                <input id="login_csrf_token" name="csrf_token" type="hidden" value="{{ login_form.csrf_token._value() }}">
+
+                <h1>Iniciar Sesión</h1>
+                <div class="form-field">
+                    {{ login_form.email(placeholder="Email", class="input-field", id="login-email", autocomplete="email") }}
+                </div>
+                <div class="form-field">
+                    {{ login_form.password(placeholder="Contraseña", class="input-field", id="login-password", autocomplete="current-password") }}
+                </div>
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <button type="submit" class="submit-btn" name="login">Iniciar Sesión</button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>¡Bienvenido de nuevo!</h1>
+                    <p>Para mantenerse conectado, inicie sesión con su información personal</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                </div>
+
+                <div class="overlay-panel overlay-right">
+                    <h1>¡Únete a nuestra comunidad!</h1>
+                    <p>Regístrate con tus datos personales y comienza tu viaje con nosotros</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <footer>
+        <p>&copy; 2025 CatCodeArte. Todos los derechos reservados.</p>
+    </footer>
+    
+</body>
+</html>
