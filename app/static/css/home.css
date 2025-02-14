@@ -220,23 +220,56 @@ button.ghost:hover {
     text-align: center;
 }
 
-@media (max-width: 768px) {
+/* Media query existente */
+@media (max-width: 300px) {
     .container {
         min-height: 800px;
     }
-    
+
+    /* Asegúrate de que los formularios tengan un 100% de ancho */
     .form-container {
         width: 100%;
     }
-    
+
+    /* Mostrar contenedor de registro y login uno encima del otro */
+    .sign-in-container,
+    .sign-up-container {
+        width: 100%; /* Asegura que ambos ocupen el 100% del ancho */
+        opacity: 1;  /* Asegura que no estén ocultos */
+        transform: translateX(0);  /* Elimina cualquier transform en pantallas pequeñas */
+    }
+
+    /* Ajustar el overlay */
     .overlay-container {
         display: none;
     }
-    
+
     form {
         padding: 0 20px;
     }
 }
+
+/* Otras modificaciones responsivas adicionales para mejorar el diseño en dispositivos móviles */
+@media (max-width: 480px) {
+    .container {
+        min-height: 650px; /* Ajustar altura si es necesario */
+    }
+
+    h1 {
+        font-size: 20px; /* Reducir el tamaño del texto */
+    }
+
+    .input-field {
+        font-size: 12px; /* Hacer los campos de entrada más pequeños */
+        padding: 10px 12px;
+    }
+
+    button {
+        font-size: 12px; /* Hacer los botones más pequeños */
+        padding: 10px 30px;
+    }
+}
+
 
 footer {
     background: #6a11cb;
@@ -249,9 +282,3 @@ footer {
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
-    footer {
-        position: relative;
-        padding: 20px 0;
-    }
-}

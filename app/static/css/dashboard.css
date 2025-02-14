@@ -145,3 +145,44 @@ body {
 .form-group textarea {
     height: 100px;
 }
+
+@media (max-width: 768px) {
+    .notes-grid {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+}
+@media (max-width: 768px) {
+    .btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    .note-card {
+        padding: 15px;
+    }
+
+    .note-form {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px; /* Reducir tamaño del texto */
+    }
+
+    .welcome-text {
+        font-size: 12px; /* Ajustar tamaño de bienvenida */
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
