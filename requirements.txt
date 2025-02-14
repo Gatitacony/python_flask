@@ -12,4 +12,5 @@ Werkzeug==3.1.3
 gunicorn
 flask-login
 flask-migrate
+flask-wtf
 
